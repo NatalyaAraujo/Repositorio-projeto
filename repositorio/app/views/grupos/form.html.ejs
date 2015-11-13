@@ -1,0 +1,38 @@
+<div class="control-group">
+	 <label for="perfilId" class="control-label">Perfil</label>
+			  <div class="controls">
+				<%- selectTag(perfils, grupo.perfilId, {
+				  name: 'perfilId'
+				, valueField: 'id'
+				, textField: 'nome'
+				, class:'span6 form-control'
+				}); %>	
+	  </div>
+</div>
+<div class="tree-permissoes"></div>
+
+<script type="text/javascript">
+		var html = '';
+		
+		<% if (permissaos) { %>
+		<% for (var i = 0, ii = entidades.length; i < ii; i++) { %>
+			html += '<ul><li><input type="checkbox" > <%= entidades[i].nome %> <ul>';
+			<% for (var u = 0, uu = permissaos.length; u < uu; u++) { %>
+				<% if(permissaos[u].entidadeId == entidades[i].id) { %>
+					html += '<li><%- contentTag('input', grupo.permissao, {type:'checkbox', name:'nome', value: permissaos[u].id }) %> <%= permissaos[u].nome %></li> ';
+					
+				<% } %>	
+			<% } %>
+			html += '</ul></li>';
+			html += '</ul>';
+		<% } %>
+		
+		<% } %>
+		$(".tree-permissoes").html(html);
+			
+			$(".tree-permissoes").checkboxTree({
+			collapseDuration: 100,
+			collapseUiIcon: 'ui-icon-plus',
+            expandUiIcon: 'ui-icon-minus', 
+		});
+</script>

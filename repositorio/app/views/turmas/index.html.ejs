@@ -1,0 +1,40 @@
+<div class="hero-unit">
+  <h2>All Turmas</h2>
+  <%- linkTo('Create a new Turma', addTurmaPath, {class: 'btn pull-right'}); %>
+</div>
+
+<div id="turmas-list"></div>
+
+<script>var list = []; 
+		var ids = [];
+		var perfil;
+		<% turmas.forEach(function(d){ %>
+			list.push(new Array("<%=d.nome%>"));
+			ids.push("<%=d.id%>");
+		<% });%>
+		
+		var $table = $("<table>").append( 
+            $("<thead>").append( 
+                $("<tr>").append( 
+                    $("<th>").text("Nome").append( $("<i>", { class: "fa fa-bullhorn" })),
+					$("<th>")
+                ) 
+            ) 
+        ); 
+		
+		$("#turmas-list").append($table); 
+		
+		$table.dataTable({data:list,
+			"columnDefs": [ {
+				"targets": 1,
+				"data": "download_link",
+				"render": function ( list, type, full, meta ) {
+					return '<a href="/atividades/index?turmaid='+ids.slice(0,1)+'" class="btn btn-success btn-xs"><i class="fa fa-list-ul"></i></a>' +
+						   '<a href="/turmas/'+ids.slice(0,1)+'/edit" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>' +
+						   '<button class="btn btn-danger btn-xs" type="submit" formmethod="POST" formaction="/turmas/'+ids.shift()+'?_method=DELETE"><i class="fa fa-trash-o "></i></button>';
+				 }
+			  } ]
+		});
+		
+		</script>
+</div>

@@ -1,0 +1,39 @@
+<div class="col-lg-12">
+        <div class="form-panel">
+			<div class="control-group">
+			  <label for="nome" class="control-label">nome</label>
+			  <div class="controls">
+				<%- contentTag('input', usuario.nome, {type:'text', class:'span6', name:'nome'}) %>
+			  </div>
+			</div>
+			<div class="control-group">
+			  <label for="login" class="control-label">login</label>
+			  <div class="controls">
+				<%- contentTag('input', usuario.login, {type:'text', class:'span6', name:'login'}) %>
+			  </div>
+			</div>
+			<div class="control-group">
+			  <label for="senha" class="control-label">senha</label>
+			  <div class="controls">
+				<%- contentTag('input', usuario.senha, {type:'text', class:'span6', name:'senha'}) %>
+			  </div>
+			</div>
+			<div class="control-group">
+			  <label for="email" class="control-label">email</label>
+			  <div class="controls">
+				<%- contentTag('input', usuario.email, {type:'text', class:'span6', name:'email'}) %>
+			  </div>
+			</div>
+			<div class="control-group">
+			 <label for="perfilId" class="control-label">Perfil</label>
+			  <div class="controls">
+				<%- selectTag(perfils, usuario.perfilId, {
+				  name: 'perfilId'
+				, valueField: 'id'
+				, textField: 'nome'
+				, class:'span6 form-control'
+				}); %>	
+			  </div>
+			</div>
+		</div>
+</div>

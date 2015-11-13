@@ -1,0 +1,27 @@
+cd Users/Natalia/Documents/apacheRiver/apache-river-2.2.2/examples/hello
+
+cd Users/Natalia/Documents/ppd/soap/apache-river-2.2.0\exemplo\
+
+1. Baixar um novo apache-river 
+
+2. Criar, se nao existir o arquivo policy.all dentro da pasta /config com o conteúdo:
+grant {
+	permission java.security.AllPermission;
+};
+
+3. copiar o jar que esta em lib-ext/jsk-policy.jar e colar na 
+pasta do jre/lib/ext q esta dentro do jdk da sua maquina
+
+4. Va ate a pasta do apache river e abra 3 cmd's 
+	- execute call httpd.bat
+	- execute call jrmp-rigger.bat
+	- execute call jrmp-outrigger-group.bat
+	(Mesmo q de erro nao feche!)
+	
+5. Pra executar o exemplo q o cidcley passou, na ide importe os arquivos:
+	- jini-core.jar
+	- jini-ext.jar
+	- outrigger.jar
+	- reggie.jar
+	
+6. Na ide rode a classe WriteMessage

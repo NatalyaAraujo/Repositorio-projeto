@@ -1,0 +1,22 @@
+<div class="hero-unit">
+  <form id="entidade-form" class="form-horizontal" action="/entidades" method="POST">
+    <fieldset>
+      <legend>Create a new Entidade</legend>
+      <% if(params.errors) { %>
+      <div class="control-group">
+        <ul>
+        <% for(var err in params.errors) { %>
+          <li><%= params.errors[err]; %></li>
+        <% } %>
+        </ul>
+      </div>
+      <% } %>
+
+      <%- partial('form', {entidade: params}) %>
+
+      <div class="form-actions">
+        <%- contentTag('input', 'Add', {type: 'submit', class: 'btn btn-primary'}) %>
+      </div>
+    </fieldset>
+  </form>
+</div>

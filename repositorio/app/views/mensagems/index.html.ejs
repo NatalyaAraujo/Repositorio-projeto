@@ -1,0 +1,19 @@
+<div class="hero-unit">
+  <h2>All Mensagems</h2>
+  <%- linkTo('Create a new Mensagem', addMensagemPath, {class: 'btn pull-right'}); %>
+</div>
+
+<div id="mensagems-list">
+<% if (mensagems) { %>
+<% for (var i = 0, ii = mensagems.length; i < ii; i++) { %>
+  <div class="row list-item" id="mensagem-<%= mensagems[i]._id; %>">
+    <div class="span8">
+      <h3><%- linkTo(mensagems[i].texto, mensagemPath(mensagems[i]._id)); %></h3>
+    </div>
+    <div class="span4">
+      <h3><i class="icon-list-alt"></i><%= mensagems[i]._id; %></h3>
+    </div>
+  </div>
+<% } %>
+<% } %>
+</div>

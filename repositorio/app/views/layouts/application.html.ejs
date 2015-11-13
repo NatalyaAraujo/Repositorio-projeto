@@ -1,0 +1,34 @@
+<%= partial('layout_header'); %>
+  <body>
+  <script src="/js/scripts/aplicacao.js"></script>
+  <script src="/js/scripts/ajax.js"></script>
+    <div id="main-menu">
+		<div id="menu-superior"></div>
+		<div id="menu-lateral"></div>
+	</div>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		var template = $.ajax({
+		  url: "/js/scripts/submenu_application.html",
+		  dataType: 'html',
+		  success : function(data){
+			var cli = new Cliente();
+			cli.init(data);
+		  },
+		  error: function(data){
+
+		  }
+		}).responseText;
+		
+	});
+	</script>
+		
+    <section id="main-content">
+		<div class="container wrapper site-min-height" >
+		  <%- displayFlash(flash); %>
+		  <%- render(); %>
+		</div>
+	</section>
+  </body>
+<%= partial('layout_footer'); %>
+

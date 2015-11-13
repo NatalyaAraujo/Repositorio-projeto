@@ -1,0 +1,17 @@
+<div class="control-group">
+  <label for="nome" class="control-label">nome</label>
+  <div class="controls">
+    <%- contentTag('input', permissao.nome, {type:'text', class:'span6', name:'nome'}) %>
+  </div>
+  <div class="control-group">
+		<label for="entidadeId" class="control-label">Entidade</label>
+			  <div class="controls">
+				<%- selectTag(entidades, permissao.entidadeId, {
+				  name: 'entidadeId'
+				, valueField: 'id'
+				, textField: 'nome'
+				, class:'span6 form-control'
+				}); %>	
+   	    </div>
+	</div>
+</div>

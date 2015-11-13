@@ -1,0 +1,59 @@
+<div class="hero-unit">
+  <h2>All AtividadeResposta</h2>
+  <%- linkTo('Create a new AtividadeRespostum', addAtividadeRespostumPath, {class: 'btn pull-right'}); %>
+</div>
+
+<div id="atividadeResposta-list">
+<% if (atividadeResposta) { %>
+<% for (var i = 0, ii = atividadeResposta.length; i < ii; i++) { %>
+  <div class="row list-item" id="atividadeRespostum-<%= atividadeResposta[i]._id; %>">
+    <div class="span8">
+      <h3><%- linkTo(atividadeResposta[i].data, atividadeRespostumPath(atividadeResposta[i]._id)); %></h3>
+    </div>
+    <div class="span4">
+      <h3><i class="icon-list-alt"></i><%= atividadeResposta[i]._id; %></h3>
+    </div>
+  </div>
+<% } %>
+<% } %>
+</div>
+
+<div id="atividadeResposta-list">
+<script type="text/javascript">
+	var list = []; 
+	var ids = [];
+	<% atividadeResposta.forEach(function(d){ %>
+			list.push(new Array("<%=d.fileNome%>"));
+			ids.push("<%=d.id%>");
+		<% });%>
+
+	var $table = $("<table>").append( 
+            $("<thead>").append( 
+                $("<tr>").append( 
+                    $("<th>").text("Titulo").append( $("<i>", { class: "fa fa-bullhorn" })),
+					$("<th>")
+                ) 
+            ) 
+        ); 
+		
+		$("#atividadeResposta-list").append($table); 
+		
+		$table.dataTable({data:list,
+			"columnDefs": [ {
+				"targets": 1,
+				"data": "download_link",
+				"render": function ( list, type, full, meta ) {
+					return '<a href="/atividades/'+ids.slice(0,1)+'/edit" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>'+
+						   '<button class="btn btn-danger btn-xs" type="submit" formmethod="POST" formaction="/atividades/'+ids.shift()+'?_method=DELETE"><i class="fa fa-trash-o "></i></button>';
+				 }
+			  } ],
+			"columns": [
+                { sWidth: "85%" },
+                { sWidth: "15%", sClass: "center", bSortable: false }
+            ],
+		});
+		
+
+</script>
+</div>
+

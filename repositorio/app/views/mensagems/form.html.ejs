@@ -1,0 +1,29 @@
+<div class="control-group">
+  <label for="remetente" class="control-label">Remetente</label>
+  <div class="controls">
+	<%- contentTag('input', mensagem.remetente, {type:'text', class:'span6', name:'remetente', disabled:'true'}) %>
+  </div>
+</div>
+<div class="control-group">
+	<label for="usuarioId" class="control-label">Destinatário</label>
+	 <div class="controls">
+		<%- selectTag(destinatarios, mensagem.destinatarioId, {
+		name: 'destinatarioId'
+		, valueField: 'id'
+		, textField: 'email'
+		, class:'span6 form-control'
+	  }); %>	
+	 </div>
+</div>
+<div class="control-group">
+  <label for="texto" class="control-label">texto</label>
+  <div class="controls">
+	<%- contentTag('textarea', mensagem.texto, {class:'span6', name:'texto'}) %>
+  </div>
+</div>
+<div class="control-group">
+  <label for="dtEnvio" class="control-label">data de envio</label>
+  <div class="controls">
+    <%- contentTag('input', mensagem.dtEnvio, {type:'text', class:'span6', name:'dtEnvio'}) %>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="hero-unit">
+  <h2 class="nome"><%= turma.nome %></h2>
+  <%- linkTo('Edit this turma', editTurmaPath(params.id), {class: 'btn pull-right'}); %>
+  <%- linkTo('Back to list', turmaPath(''), {class: 'btn pull-right'}); %>
+</div>
+
+<h2>Atividades desta turma</h2>
+
+<div class="row list-item">
+  <div class="span4">
+    
+  </div>
+  <div class="span8">
+    <h3><i class="icon-list-alt"></i><span class="control"><%= turma.atividade %></span></h3>
+  </div>
+  <div class="span8">
+	<a href="../atividades/add?turmaId=<%=params.id%>">Criar atividade</a>
+  </div>
+</div>

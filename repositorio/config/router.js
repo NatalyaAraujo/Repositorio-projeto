@@ -1,0 +1,70 @@
+/*
+ * Geddy JavaScript Web development framework
+ * Copyright 2112 Matthew Eernisse (mde@fleegix.org)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+*/
+
+
+var router = new geddy.RegExpRouter();
+//var passport = require('passport');
+//passport.initialize();
+//passport.session();
+//var expressSession = require('express-session');
+
+router.get('/').to('Main.login');
+router.match('/main/index').to('Main.index');
+router.match('/perfils/associar').to('Perfils.associar');
+router.match('/atividade_resposta/upload','POST').to('AtividadeResposta.upload');
+router.match('/autenticar').to('Usuarios.autenticar');
+router.match('/atividades/index').to('Atividades.index');
+router.match('/perfils/index').to('Perfils.index');
+router.match('/usuarios/index').to('Usuarios.index');
+router.match('/entidades/index').to('Entidades.index');
+router.match('/permissaos/index').to('Permissaos.index');
+router.match('/turmas/index').to('Turmas.index');
+router.match('/atividade_resposta/add').to('AtividadeResposta.add');
+router.match('/usuarios/autenticado').to('Usuarios.logado');
+router.match('/logout').to('Usuarios.logout');
+router.match('/atividades/add', 'POST').to('Atividades.add');
+
+// Basic routes
+// router.match('/moving/pictures/:id', 'GET').to('Moving.pictures');
+//
+// router.match('/farewells/:farewelltype/kings/:kingid', 'GET').to('Farewells.kings');
+//
+// Can also match specific HTTP methods only
+// router.get('/xandadu').to('Xanadu.specialHandler');
+// router.del('/xandadu/:id').to('Xanadu.killItWithFire');
+//
+// Resource-based routes
+// router.resource('hemispheres');
+//
+// Nested Resource-based routes
+// router.resource('hemispheres').nest(function(){
+//   this.resource('countries');
+//   this.get('/print(.:format)').to('Hemispheres.print');
+// });
+
+router.resource('usuarios');
+router.resource('perfils');
+router.resource('atividades');
+router.resource('atividade_resposta');
+router.resource('turmas');
+router.resource('permissaos');
+router.resource('entidades');
+router.resource('grupo_permissaos');
+router.resource('grupos');
+router.resource('mensagems');
+exports.router = router;

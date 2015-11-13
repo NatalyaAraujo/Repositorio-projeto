@@ -1,0 +1,41 @@
+<div class="control-group">
+  <label for="nome" class="control-label">nome</label>
+  <div class="controls">
+    <%- contentTag('input', turma.nome, {type:'text', class:'span6', name:'nome'}) %>
+  </div>
+</div>
+<input type="hidden" id="turma-comp" name="usuarioId">
+
+  <div id="multiselect" style="width:600px; padding-top: 20px" class="input-xlarge control-group"></div>
+	<script type="text/javascript">
+		$(function() {
+			var t = $('#multiselect').bootstrapTransfer();
+			var usus = [];
+			var	participantes = [];
+			<% for (var u = 0; u < usuarios.length; u++) { %>
+				usus.push({value:  '<%= usuarios[u].id %>', content: '<%= usuarios[u].nome%>' }); 
+			<% } %>
+		
+			t.populate(usus);
+		 <%	if(turma.alunos){  %>
+			<% for (var i = 0; i < turma.alunos.length; i++) { %>
+				participantes.push("<%= turma.alunos[i].id %>"); 
+			<% } %>
+			t.set_values(participantes);
+		 <%	}  %>
+			//
+			
+			$('#add-turma').bind( "Turma-Evento", function( e ) {
+				console.log("add");
+				$("#turma-comp").val(t.get_values()); 
+			} );
+			
+			$('#update-turma').bind( "Turma-Evento", function( e ) {
+				console.log("edit");
+				$("#turma-comp").val(t.get_values()); 
+			} );
+			
+			//console.log(t.get_values());
+		});
+    </script> 
+ 

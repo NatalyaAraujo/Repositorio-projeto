@@ -1,0 +1,18 @@
+<div class="hero-unit">
+  <h2 class="data"><%= atividadeRespostum.data %></h2>
+  <%- linkTo('Edit this atividadeRespostum', editAtividadeRespostumPath(params.id), {class: 'btn pull-right'}); %>
+  <%- linkTo('Back to list', atividadeRespostumPath(''), {class: 'btn pull-right'}); %>
+</div>
+
+<h2>AtividadeRespostum Properties</h2>
+<% for(var i in atividadeRespostum) { -%>
+<% if(i !== 'saved') { -%>
+<div class="row list-item">
+  <div class="span4">
+    <h3><%= i %></h3>
+  </div>
+  <div class="span8">
+    
+  </div>
+</div>
+<% } -%><% } -%>

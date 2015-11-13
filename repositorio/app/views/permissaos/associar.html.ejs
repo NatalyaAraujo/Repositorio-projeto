@@ -1,0 +1,45 @@
+<h2>Permissaos</h2>
+<div class="hero-unit">
+  <form id="permissao-form" class="form-horizontal" action="/permissaos" method="POST">
+    <fieldset>
+	<div class="tree-permissoes"></div>
+		<script type="text/javascript">
+		var html = '';
+		
+		<% if (permissaos) { %>
+		<% for (var i = 0, ii = entidades.length; i < ii; i++) { %>
+			html += '<ul><li><input type="checkbox" > <%= entidades[i].nome %> <ul>';
+			<% for (var u = 0, uu = permissaos.length; u < uu; u++) { %>
+				<% if(permissaos[u].entidade._id == entidades[i].id) { %>
+					html += '<li><input type="checkbox" value="<%= permissaos[u].id %>"> <%= permissaos[u].nome %></li> ';
+				<% } %>	
+				
+			<% } %>
+			html += '</ul></li>';
+			html += '</ul>';
+		<% } %>
+		
+		<% } %>
+		
+		
+			var elem = '<ul><li><li><input type="checkbox" value="id-1"><label>Usuario</label></li>'+
+			                '<li><input type="checkbox" value="id-2"><label>Criar</label></li>'+ 
+							'<li><input type="checkbox" value="id-3"><label>Editar</label></li>'+
+							'<li><input type="checkbox" value="id-4"><label>Excluir</label></li></li></ul>';
+			
+			$(".tree-permissoes").html(html);
+			
+			$(".tree-permissoes").checkboxTree({
+			collapseDuration: 100,
+			collapseUiIcon: 'ui-icon-plus',
+            expandUiIcon: 'ui-icon-minus', 
+		});
+			
+		</script>
+	  
+      <div class="form-actions">
+        <%- contentTag('input', 'Add', {type: 'submit', class: 'btn btn-primary'}) %>
+      </div>
+    </fieldset>
+  </form>
+</div>

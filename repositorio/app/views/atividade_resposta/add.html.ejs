@@ -1,0 +1,22 @@
+<div class="hero-unit">
+  <form id="atividadeRespostum-form" class="form-horizontal" action="/atividade_resposta" method="POST" enctype="multipart/form-data">
+    <fieldset>
+      <legend>Create a new AtividadeRespostum</legend>
+      <% if(params.errors) { %>
+      <div class="control-group">
+        <ul>
+        <% for(var err in params.errors) { %>
+          <li><%= params.errors[err]; %></li>
+        <% } %>
+        </ul>
+      </div>
+      <% } %>
+
+      <%- partial('form', { atividadeRespostum: params, atividadeId: params.atividadeid}) %>
+
+      <div class="form-actions">
+        <%- contentTag('input', 'Add', {type: 'submit', class: 'btn btn-primary'}) %>
+      </div>
+    </fieldset>
+  </form>
+</div>

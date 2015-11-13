@@ -1,0 +1,32 @@
+ <div class="control-group">
+		<h3><i class="fa fa-angle-right"></i> Update</h3>
+ </div>
+ 
+	<section class="wrapper" style="margin-top: 0px;">
+		
+			<div class="row mt">
+				<div class="hero-unit">
+				  <form id="usuario-form" class="form-horizontal" action="/usuarios/<%= params.id %>?_method=PUT" method="POST">
+					<fieldset>
+					  <legend>Update this Usuario</legend>
+					  <% if(params.errors) { %>
+					  <div class="control-group">
+						<ul>
+						<% for(var err in params.errors) { %>
+						  <li><%= params.errors[err]; %></li>
+						<% } %>
+						</ul>
+					  </div>
+					  <% } %>
+
+					  <%- partial('form', {usuario: usuario, perfils: perfils}) %>
+
+					  <div class="form-actions">
+						<%- contentTag('input', 'Save', {type: 'submit', class: 'btn btn-primary'}) %>
+						<%- contentTag('button', 'Remove', {type: 'submit', formaction: '/usuarios/' + params.id + '?_method=DELETE', formmethod: 'POST', class: 'btn btn-danger'}) %>
+					  </div>
+					</fieldset>
+				  </form>
+				</div>
+			</div>
+		</section>

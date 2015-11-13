@@ -1,0 +1,43 @@
+<div class="hero-unit">
+  <h2>All Entidades</h2>
+  <%- linkTo('Create a new Entidade', addEntidadePath, {class: 'btn pull-right'}); %>
+</div>
+
+<div id="entidades-list">
+<script type="text/javascript">
+	var list = []; 
+	var ids = [];
+	<% entidades.forEach(function(d){ %>
+			list.push(new Array("<%=d.nome%>"));
+			ids.push("<%=d.id%>");
+		<% });%>
+
+		var $table = $("<table>").append( 
+            $("<thead>").append( 
+                $("<tr>").append( 
+                    $("<th>").text("Nome").append( $("<i>", { class: "fa fa-bullhorn" })),
+					$("<th>")
+                ) 
+            ) 
+        ); 
+		
+		$("#entidades-list").append($table); 
+		
+		$table.dataTable({data:list,
+			"columnDefs": [ {
+				"targets": 1,
+				"data": "download_link",
+				"render": function ( list, type, full, meta ) {
+					return '<a href="/entidades/'+ids.slice(0,1)+'/edit" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>'+
+						   '<button class="btn btn-danger btn-xs" type="submit" formmethod="POST" formaction="/entidades/'+ids.shift()+'?_method=DELETE"><i class="fa fa-trash-o "></i></button>';
+				 }
+			  } ],
+			"columns": [
+                { sWidth: "85%" },
+                { sWidth: "15%", sClass: "center", bSortable: false }
+            ],
+		});
+		
+
+</script>
+</div>

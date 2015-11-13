@@ -1,0 +1,38 @@
+<h2>Permissaos</h2>
+<div class="hero-unit">
+  <form id="permissao-form" class="form-horizontal" action="/perfils" method="POST">
+    <fieldset>
+	<div class="tree-permissoes"></div>
+		<script type="text/javascript">
+		var html = '';
+		
+		<% if (permissaos) { %>
+		<% for (var i = 0, ii = entidades.length; i < ii; i++) { %>
+			html += '<ul><li><input type="checkbox" > <%= entidades[i].nome %> <ul>';
+			<% for (var u = 0, uu = permissaos.length; u < uu; u++) { %>
+				<% if(permissaos[u].entidade._id == entidades[i].id) { %>
+					html += '<li><input type="checkbox" value="<%= permissaos[u].id %>"> <%= permissaos[u].nome %></li> ';
+				<% } %>	
+				
+			<% } %>
+			html += '</ul></li>';
+			html += '</ul>';
+		<% } %>
+		<% } %>
+		
+		$(".tree-permissoes").html(html);
+			
+		$(".tree-permissoes").checkboxTree({
+			collapseDuration: 100,
+			collapseUiIcon: 'ui-icon-plus',
+            expandUiIcon: 'ui-icon-minus', 
+		});
+			
+		</script>
+	  
+      <div class="form-actions">
+        <%- contentTag('input', 'Add', {type: 'submit', class: 'btn btn-primary'}) %>
+      </div>
+    </fieldset>
+  </form>
+</div>

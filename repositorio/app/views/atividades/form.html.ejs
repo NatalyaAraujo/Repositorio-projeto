@@ -1,0 +1,26 @@
+<input type="hidden" id="turma-atv" name="turmaId" value="<%=turmaId %>">
+<div class="control-group">
+  <label for="descricao" class="control-label">descricao</label>
+  <div class="controls">
+    <%- contentTag('input', atividade.descricao, {type:'text', class:'span6', name:'descricao'}) %>
+  </div>
+</div>
+<div class="control-group">
+  <label for="titulo" class="control-label">titulo</label>
+  <div class="controls">
+    <%- contentTag('input', atividade.titulo, {type:'text', class:'span6', name:'titulo'}) %>
+  </div>
+</div>
+<div class="control-group">
+  <label for="dataInicio" class="control-label">data de inicio</label>
+  <div class="controls">
+    <%- contentTag('input', atividade.dataInicio, {type:'datetime', class:'span3', name:'dataInicio'}) %>
+  </div>
+</div>
+<div class="control-group">
+  <label for="dataFim" class="control-label">data final</label>
+  <div class="controls">
+    <%- contentTag('input', atividade.dataFim, {type:'datetime', class:'span3', name:'dataFim'}) %>
+  </div>
+</div>
+

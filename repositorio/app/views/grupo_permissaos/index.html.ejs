@@ -1,0 +1,19 @@
+<div class="hero-unit">
+  <h2>All GrupoPermissaos</h2>
+  <%- linkTo('Create a new GrupoPermissao', addGrupoPermissaoPath, {class: 'btn pull-right'}); %>
+</div>
+
+<div id="grupoPermissaos-list">
+<% if (grupoPermissaos) { %>
+<% for (var i = 0, ii = grupoPermissaos.length; i < ii; i++) { %>
+  <div class="row list-item" id="grupoPermissao-<%= grupoPermissaos[i].id; %>">
+    <div class="span8">
+      <h3><%- linkTo(grupoPermissaos[i].id, grupoPermissaoPath(grupoPermissaos[i].id)); %></h3>
+    </div>
+    <div class="span4">
+      <h3><i class="icon-list-alt"></i><%= grupoPermissaos[i].id; %></h3>
+    </div>
+  </div>
+<% } %>
+<% } %>
+</div>

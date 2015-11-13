@@ -1,0 +1,49 @@
+<div class="hero-unit">
+  <h2>All Usuarios</h2>
+  <%- linkTo('Create a new Usuario', addUsuarioPath, {class: 'btn pull-right'}); %>
+</div>
+
+<div id="usuarios-list">
+<script>var list = []; 
+		var ids=[];
+		var perfil;
+		<% usuarios.forEach(function(d){ %>
+				<% for (var i = 0, ii = perfils.length; i < ii; i++) { %>
+				<%	if( perfils[i].id == d.perfilId){ %>
+				<%		perfil = perfils[i].nome;  %>
+				<%	} %>
+				<% } %>
+			
+			list.push(new Array("<%=d.nome%>","<%=d.email%>"));
+			ids.push("<%=d.id%>");
+		<% });%>
+		
+		var $table = $("<table>").append( 
+            $("<thead>").append( 
+                $("<tr>").append( 
+                    $("<th>").text("Nome").append( $("<i>", { class: "fa fa-bullhorn" })),
+                    $("<th>").text("Email"),
+					$("<th>").text("Perfil"),
+					$("<th>")
+                ) 
+            ) 
+        ); 
+		
+		$("#usuarios-list").append($table); 
+		
+		$table.dataTable({data:list,
+			"columnDefs": [ {
+				"targets": 3,
+				"data": "download_link",
+				"render": function ( list, type, full, meta ) {
+					return '<form id="usuario-form" class="form-horizontal" action="/usuarios/'+ ids.slice(0,1)+'?_method=PUT" method="POST">'+
+								'<a href="/usuarios/'+ids.slice(0,1)+'/edit" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>'+
+								'<button class="btn btn-danger btn-xs" type="submit" formmethod="POST" formaction="/usuarios/'+ids.shift()+'?_method=DELETE"><i class="fa fa-trash-o "></i>'+
+								'</button>'+
+							'</form>';
+				 }
+			  } ]
+		});
+		
+		</script>
+</div>

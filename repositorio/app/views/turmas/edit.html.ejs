@@ -1,0 +1,31 @@
+<div class="hero-unit">
+  <form id="turma-form" class="form-horizontal" action="/turmas/<%= params.id %>?_method=PUT" method="POST">
+    <fieldset>
+      <legend>Update this Turma</legend>
+      <% if(params.errors) { %>
+      <div class="control-group">
+        <ul>
+        <% for(var err in params.errors) { %>
+          <li><%= params.errors[err]; %></li>
+        <% } %>
+        </ul>
+      </div>
+      <% } %>
+
+      <%- partial('form', {turma: turma, usuarios: usuarios}) %>
+
+      <div class="form-actions">
+        <%- contentTag('input', 'Save', {type: 'submit', class: 'btn btn-primary', id: 'update-turma'}) %>
+        <%- contentTag('button', 'Remove', {type: 'submit', formaction: '/turmas/' + params.id + '?_method=DELETE', formmethod: 'POST', class: 'btn btn-danger'}) %>
+      </div>
+	  
+	  <script>
+		$('#update-turma').click(function(){
+			console.log("ja disparei");
+			$('#update-turma').trigger('Turma-Evento');
+		});
+	  </script>
+	  
+    </fieldset>
+  </form>
+</div>
